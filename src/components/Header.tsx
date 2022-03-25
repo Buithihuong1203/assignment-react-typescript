@@ -9,7 +9,7 @@ const Header = (props: Props) => {
     return (
         <header>
             <div className="logo text-center container my-5">
-                <img src="https://picsum.photos/130/40" alt="" />
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Logo_FPT_Polytechnic.jpg" alt="" />
             </div>
             <nav className="navbar navbar-expand-lg navbar-light bg-light container my-5">
                 <div className="container-fluid">

@@ -21,16 +21,16 @@ const Footer = (props: Props) => {
                                 <h5 className="mb-3" style={{ letterSpacing: 2, color: '#818963' }}>links</h5>
                                 <ul className="list-unstyled mb-0">
                                     <li className="mb-1">
-                                        <a href="#!" style={{ color: '#4f4f4f' }}>Frequently Asked Questions</a>
+                                        <a href="" style={{ color: '#4f4f4f' }}>Frequently Asked Questions</a>
                                     </li>
                                     <li className="mb-1">
-                                        <a href="#!" style={{ color: '#4f4f4f' }}>Delivery</a>
+                                        <a href="" style={{ color: '#4f4f4f' }}>Delivery</a>
                                     </li>
                                     <li className="mb-1">
-                                        <a href="#!" style={{ color: '#4f4f4f' }}>Pricing</a>
+                                        <a href="" style={{ color: '#4f4f4f' }}>Pricing</a>
                                     </li>
                                     <li>
-                                        <a href="#!" style={{ color: '#4f4f4f' }}>Where we deliver?</a>
+                                        <a href="" style={{ color: '#4f4f4f' }}>Where we deliver?</a>
                                     </li>
                                 </ul>
                             </div>
