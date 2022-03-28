@@ -1,29 +1,47 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { signup } from '../api/auth';
 
-type Props = {}
+type TypeInputs = {
+    name: string,
+    email: string,
+    password: string
 
-const Signup = (props: Props) => {
+}
+
+const Signup = () => {
+    const { register, handleSubmit, formState: { errors } } = useForm<TypeInputs>();
+    const nvigate = useNavigate();
+
+    const onSubmit: SubmitHandler<TypeInputs> = data => {
+        signup(data);
+        navigate("/signin");
+    }
     return (
         <div>
-            <form>
+            <form className="container my-5">
                 <div className="form-group row">
                     <label htmlFor="inputName3" className="col-sm-2 col-form-label">Name</label>
                     <div className="col-sm-10">
-                        <input type="text" className="form-control" id="inputName3" placeholder="Name" />
+                        <input type="text" className="form-control" placeholder="Name" {...register('name')} />
                     </div>
                 </div>
+                <br />
                 <div className="form-group row">
                     <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Email</label>
                     <div className="col-sm-10">
-                        <input type="email" className="form-control" id="inputEmail3" placeholder="Email" />
+                        <input type="email" className="form-control" placeholder="Email" {...register('email')} />
                     </div>
                 </div>
+                <br />
                 <div className="form-group row">
                     <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">Password</label>
                     <div className="col-sm-10">
-                        <input type="password" className="form-control" id="inputPassword3" placeholder="Password" />
+                        <input type="password" className="form-control" placeholder="Password" {...register('password')} />
                     </div>
                 </div>
+                <br />
                 <div className="form-group row">
                     <div className="col-sm-2">Checkbox</div>
                     <div className="col-sm-10">
@@ -35,13 +53,13 @@ const Signup = (props: Props) => {
                         </div>
                     </div>
                 </div>
+                <br />
                 <div className="form-group row">
                     <div className="col-sm-10">
-                        <button type="submit" className="btn btn-primary">Sign in</button>
+                        <button className="btn btn-primary">Sign in</button>
                     </div>
                 </div>
             </form>
-            )
         </div>
     )
 }

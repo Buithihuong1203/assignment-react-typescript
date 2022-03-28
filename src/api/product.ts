@@ -1,6 +1,8 @@
 import instance from './instance';
-
 import { ProductType } from '../type/Product';
+import { isAuthenticate } from '../utils/localStorage';
+
+//const { token, user } = isAuthenticate();
 
 export const create = (product: ProductType) => {
     const url = `/products`;
@@ -10,7 +12,7 @@ export const list = () => {
     const url = `/products`;
     return instance.get(url);
 }
-export const read = (id: number) => {
+export const read = (id: string | undefined) => {
     const url = `/products/${id}`;
     return instance.get(url);
 }
