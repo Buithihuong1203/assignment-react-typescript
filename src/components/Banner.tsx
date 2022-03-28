@@ -4,7 +4,7 @@ type Props = {}
 
 const Banner = (props: Props) => {
     return (
-        <div id="carouselExampleIndicators" className="carousel slide container my-5" data-ride="carousel">
+        <div id="carouselExampleIndicators" className="carousel slide  my-5" data-ride="carousel">
             <ol className="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to={0} className="active" />
                 <li data-target="#carouselExampleIndicators" data-slide-to={1} />
@@ -12,7 +12,7 @@ const Banner = (props: Props) => {
             </ol>
             <div className="carousel-inner">
                 <div className="carousel-item active">
-                    <img className="d-block w-100" src="https://picsum.photos/1920/500?auto=yes&bg=777&fg=555&text=First slide" alt="First slide" />
+                    <img className="d-block w-100" src="https://picsum.photos/1920/500?auto=yes&bg=666&fg=444&text=First slide" alt="First slide" />
                 </div>
                 <div className="carousel-item">
                     <img className="d-block w-100" src="https://picsum.photos/1920/500?auto=yes&bg=666&fg=444&text=Second slide" alt="Second slide" />

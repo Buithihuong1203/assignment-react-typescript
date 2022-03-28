@@ -1,3 +1,28 @@
 {
-  "products": []
+  "products": [
+    {
+      "id": 1,
+      "img": "http://u639672.webmienphi.vn/files/sanpham/18/300_1/jpg/acqua-di-parma.jpg",
+      "name": "product a",
+      "price": 200
+    },
+    {
+      "id": 2,
+      "img": "http://u639672.webmienphi.vn/files/sanpham/18/300_1/jpg/acqua-di-parma.jpg",
+      "name": "product b",
+      "price": 300
+    },
+    {
+      "id": 3,
+      "img": "http://u639672.webmienphi.vn/files/sanpham/18/300_1/jpg/acqua-di-parma.jpg",
+      "name": "product c",
+      "price": 400
+    },
+    {
+      "id": 4,
+      "img": "http://u639672.webmienphi.vn/files/sanpham/18/300_1/jpg/acqua-di-parma.jpg",
+      "name": "product d",
+      "price": 500
+    }
+  ]
 }

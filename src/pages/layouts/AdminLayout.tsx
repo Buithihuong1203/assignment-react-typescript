@@ -2,10 +2,10 @@ import React from 'react'
 
 type Props = {}
 
-const AdminLayout = (props: Props) => {
+const Adminlayout = (props: Props) => {
     return (
-        <div>AdminLayout</div>
+        <div>Adminlayout</div>
     )
 }
 
-export default AdminLayout
+export default Adminlayout

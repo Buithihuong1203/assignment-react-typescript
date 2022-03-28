@@ -8,12 +8,11 @@ type Props = {}
 const Header = (props: Props) => {
     return (
         <header>
-            <div className="logo text-center container my-5">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Logo_FPT_Polytechnic.jpg" alt="" />
+            <div className="logo text-center w-3/6">
+                <img src="	http://u639672.webmienphi.vn/userfiles/img/639672/beautyfresh_logo_1.png" alt="" className='' />
             </div>
-            <nav className="navbar navbar-expand-lg navbar-light bg-light container my-5">
+            <nav className="navbar navbar-expand-lg navbar-light bg-light ">
                 <div className="container-fluid">
-                    <a className="navbar-brand" href="#">Navbar</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon" />
                     </button>
