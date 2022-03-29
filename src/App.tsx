@@ -12,6 +12,7 @@ import Adminlayout from './pages/layouts/AdminLayout';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
 
+
 function App() {
   const [products, setProducts] = useState<ProductType[]>([]);
 
@@ -35,8 +36,8 @@ function App() {
 
 
           </Route>
-          <Route path="/product/:id" element={<ProductDetail />} />
         </Route>
+
         <Route>
           <Route path='/admin' element={<Adminlayout />} />
         </Route>

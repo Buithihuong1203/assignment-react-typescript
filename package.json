@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "admin-lte": "3.2",
     "axios": "^0.26.1",
     "bootstrap": "^5.1.3",
     "react": "^17.0.2",

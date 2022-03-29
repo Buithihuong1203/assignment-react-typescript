@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import { ProductType } from '../type/Product'
 
 
@@ -21,7 +22,7 @@ const ProductList = ({ products }: ProductListProps) => {
                                 <div className="card-body">
                                     <h5 className="card-title">{product.name}</h5>
                                     <span className="block">{product.price}</span>
-                                    <a href={`/product/${product.id}`} className="btn btn-primary">Quick View</a>
+                                    <Link to={`/product/${product.id}`} className="btn btn-primary">Quick View</Link>
                                 </div>
                             </div>
 

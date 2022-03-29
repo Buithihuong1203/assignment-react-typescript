@@ -9,7 +9,7 @@ const Header = (props: Props) => {
     return (
         <header>
             <div className="logo text-center w-3/6">
-                <img src="	http://u639672.webmienphi.vn/userfiles/img/639672/beautyfresh_logo_1.png" alt="" className='' />
+                <img src="	http://u639672.webmienphi.vn/userfiles/img/639672/beautyfresh_logo_1.png" width="10%" alt="" className="" />
             </div>
             <nav className="navbar navbar-expand-lg navbar-light bg-light ">
                 <div className="container-fluid">
