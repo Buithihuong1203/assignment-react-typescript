@@ -24,6 +24,7 @@ const ProductDetail = (props: Props) => {
             <div className="col-6">
                 <h1>{product?.name}</h1>
                 <p>{product?.price}</p>
+                <button>Mua ngay</button>
             </div>
         </div>
     )

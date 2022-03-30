@@ -3,7 +3,7 @@ import WebsiteLayout from '../src/pages/layouts/WebsiteLayout';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { ProductType } from './type/Product';
 import { useEffect, useState } from 'react';
-import { create, list, update } from './api/product';
+import { add, list, remove, update } from './api/product';
 import ProductList from './components/ProductList';
 import ProductDetail from './pages/ProductDetail';
 import Products from '../src/pages/Products';
@@ -13,6 +13,8 @@ import Signin from './pages/Signin';
 import Signup from './pages/Signup';
 import { toast } from 'react-toastify';
 import ProductAdd from './pages/ProductAdd';
+import ProductManager from './pages/ProductManager';
+import ProductEdit from './pages/ProductEdit';
 
 
 function App() {
@@ -29,7 +31,7 @@ function App() {
   }, []);
   const onHandleAdd = async (product: ProductType) => {
     try {
-      const { data } = await create(product);
+      const { data } = await add(product);
       if (data) {
         toast.success("Thêm thành công");
       }
@@ -37,6 +39,10 @@ function App() {
 
     }
 
+  }
+  const onHandleRemove = async (id: number) => {
+    remove(id);
+    setProducts(products.filter(item => item.id !== id));
   }
   const onHandleUpdate = async (product: ProductType) => {
     try {
@@ -60,8 +66,10 @@ function App() {
 
         <Route>
           <Route path='/admin' element={<Adminlayout />} >
-            <Route path="products">
+            <Route path="product">
+              <Route index element={<ProductManager products={products} onRemove={onHandleRemove} />} />
               <Route path="add" element={<ProductAdd onAdd={onHandleAdd} />} />
+              <Route path=":id/edit" element={<ProductEdit onUpdate={onHandleUpdate} />} />
 
             </Route>
           </Route>
