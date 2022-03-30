@@ -61,7 +61,7 @@ function App() {
         <Route>
           <Route path='/admin' element={<Adminlayout />} >
             <Route path="products">
-              <Route path="add" element={<ProductAdd name="huong" onAdd={onHandleAdd} />} />
+              <Route path="add" element={<ProductAdd onAdd={onHandleAdd} />} />
 
             </Route>
           </Route>
