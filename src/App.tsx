@@ -3,7 +3,7 @@ import WebsiteLayout from '../src/pages/layouts/WebsiteLayout';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { ProductType } from './type/Product';
 import { useEffect, useState } from 'react';
-import { create, list } from './api/product';
+import { create, list, update } from './api/product';
 import ProductList from './components/ProductList';
 import ProductDetail from './pages/ProductDetail';
 import Products from '../src/pages/Products';
@@ -37,6 +37,14 @@ function App() {
 
     }
 
+  }
+  const onHandleUpdate = async (product: ProductType) => {
+    try {
+      const { data } = await update(product);
+      setProducts(products.map(item => item.id === data.id ? product : item))
+    } catch (error) {
+
+    }
   }
   return (
     <div className="App">
