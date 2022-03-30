@@ -1,53 +1,45 @@
 import React from 'react'
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { ProductType } from '../type/Product';
+import { signin, signup } from '../api/auth';
+import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { signin } from '../api/auth';
-import { authenticated } from '../utils/localStorage';
 
-type TypeInputs = {
+type FormInputs = {
     email: string,
-    password: string
+    password: string | number
 }
+
 const Signin = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm<TypeInputs>();
+    const { register, handleSubmit, formState: { errors } } = useForm<FormInputs>();
     const navigate = useNavigate();
-    const onSubmit: SubmitHandler<TypeInputs> = async data => {
-        const { data: user } = await signin(data);
-        console.log(user);
-        authenticated(user, () => {
-            navigate('/');
-        })
 
-
+    const onSumbit: SubmitHandler<FormInputs> = async (user) => {
+        const { data } = await signin(user);
+        if (data) {
+            toast.success("Bạn đã đăng nhập thành công, chờ 3s");
+            setTimeout(() => {
+                navigate('/')
+                localStorage.setItem("user", JSON.stringify(data))
+            }, 3000)
+        }
     }
-
     return (
-        <div>
-            <form className="container my-5">
-                <div className="form-group row">
-                    <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Email</label>
-                    <div className="col-sm-10">
-                        <input type="email" className="form-control" placeholder="Email" {...register('email')} />
-                    </div>
-                </div>
-                <br />
-                <div className="form-group row">
-                    <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">Password</label>
-                    <div className="col-sm-10">
-                        <input type="password" className="form-control" placeholder="Password" />
-                    </div>
-                </div>
-                <br />
+        <div className="container my-5">
 
-                <br />
-                <div className="form-group row">
-                    <div className="col-sm-10">
-                        <button className="btn btn-primary">Sign in</button>
-                    </div>
+            <form onSubmit={handleSubmit(onSumbit)}>
+                <div className="mb-3">
+                    <label className="form-label">Email</label>
+                    <input type="email" className="form-control"  {...register('email')} />
                 </div>
+                <div className="mb-3">
+                    <label className="form-label">Password</label>
+                    <input type="password" className="form-control"  {...register('password')} />
+                </div>
+                <button className="btn btn-primary">Đăng nhập</button>
             </form>
+            <ToastContainer />
         </div>
-
     )
 }
 

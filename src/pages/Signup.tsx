@@ -1,65 +1,48 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { ProductType } from '../type/Product';
 import { signup } from '../api/auth';
+import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
-type TypeInputs = {
+type FormInputs = {
     name: string,
     email: string,
-    password: string
-
+    password: string | number
 }
 
 const Signup = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm<TypeInputs>();
-    const nvigate = useNavigate();
+    const { register, handleSubmit, formState: { errors } } = useForm<FormInputs>();
+    const navigate = useNavigate();
 
-    const onSubmit: SubmitHandler<TypeInputs> = data => {
-        signup(data);
-        navigate("/signin");
+    const onSumbit: SubmitHandler<FormInputs> = async (user) => {
+        const { data } = await signup(user);
+        if (data) {
+            toast.success("Bạn đã đăng ký thành công, chờ 3s");
+            setTimeout(() => {
+                navigate('/signin')
+            }, 3000)
+        }
     }
     return (
-        <div>
-            <form className="container my-5">
-                <div className="form-group row">
-                    <label htmlFor="inputName3" className="col-sm-2 col-form-label">Name</label>
-                    <div className="col-sm-10">
-                        <input type="text" className="form-control" placeholder="Name" {...register('name')} />
-                    </div>
+        <div className="container my-5">
+
+            <form onSubmit={handleSubmit(onSumbit)}>
+                <div className="mb-3">
+                    <label className="form-label">Name</label>
+                    <input type="text" className="form-control" {...register('name')} />
                 </div>
-                <br />
-                <div className="form-group row">
-                    <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Email</label>
-                    <div className="col-sm-10">
-                        <input type="email" className="form-control" placeholder="Email" {...register('email')} />
-                    </div>
+                <div className="mb-3">
+                    <label className="form-label">Email</label>
+                    <input type="email" className="form-control"  {...register('email')} />
                 </div>
-                <br />
-                <div className="form-group row">
-                    <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">Password</label>
-                    <div className="col-sm-10">
-                        <input type="password" className="form-control" placeholder="Password" {...register('password')} />
-                    </div>
+                <div className="mb-3">
+                    <label className="form-label">Password</label>
+                    <input type="password" className="form-control"  {...register('password')} />
                 </div>
-                <br />
-                <div className="form-group row">
-                    <div className="col-sm-2">Checkbox</div>
-                    <div className="col-sm-10">
-                        <div className="form-check">
-                            <input className="form-check-input" type="checkbox" id="gridCheck1" />
-                            <label className="form-check-label" htmlFor="gridCheck1">
-                                Remember me
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <br />
-                <div className="form-group row">
-                    <div className="col-sm-10">
-                        <button className="btn btn-primary">Sign in</button>
-                    </div>
-                </div>
+                <button className="btn btn-primary">Đăng ký</button>
             </form>
+            <ToastContainer />
         </div>
     )
 }
