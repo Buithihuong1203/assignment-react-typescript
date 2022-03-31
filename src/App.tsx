@@ -43,12 +43,16 @@ function App() {
   const onHandleRemove = async (id: number) => {
     remove(id);
     setProducts(products.filter(item => item._id !== id));
+
   }
 
   const onHandleUpdate = async (product: ProductType) => {
     try {
       const { data } = await update(product);
       setProducts(products.map(item => item._id === data.id ? product : item))
+      if (data) {
+        toast.success("Sửa thành công");
+      }
     } catch (error) {
 
     }
