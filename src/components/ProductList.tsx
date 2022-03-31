@@ -22,7 +22,7 @@ const ProductList = ({ products }: ProductListProps) => {
                                 <div className="card-body">
                                     <h5 className="card-title">{product.name}</h5>
                                     <span className="block">{product.price}</span>
-                                    <Link to={`/product/${product.id}`} className="btn btn-primary">Quick View</Link>
+                                    <Link to={`/product/${product._id}`} className="btn btn-primary">Quick View</Link>
                                 </div>
                             </div>
 

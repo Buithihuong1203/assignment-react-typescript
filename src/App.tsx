@@ -42,12 +42,13 @@ function App() {
   }
   const onHandleRemove = async (id: number) => {
     remove(id);
-    setProducts(products.filter(item => item.id !== id));
+    setProducts(products.filter(item => item._id !== id));
   }
+
   const onHandleUpdate = async (product: ProductType) => {
     try {
       const { data } = await update(product);
-      setProducts(products.map(item => item.id === data.id ? product : item))
+      setProducts(products.map(item => item._id === data.id ? product : item))
     } catch (error) {
 
     }

@@ -2,7 +2,7 @@ import { ProductType } from "../type/Product";
 import instance from "./instance";
 export const list = () => {
     const url = `/products`;
-    return instance.get(url)
+    return instance.get(url);
 }
 export const add = (product: ProductType) => {
     const url = `/products`;
@@ -12,7 +12,7 @@ export const remove = (id: number) => {
     const url = `/products/${id}`;
     return instance.delete(url);
 }
-export const read = (id: number) => {
+export const read = (id: string | undefined) => {
     const url = `/products/${id}`;
     return instance.get(url);
 }

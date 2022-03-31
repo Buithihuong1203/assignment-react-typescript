@@ -2,7 +2,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { ProductType } from '../type/Product';
 import { read, update } from '../api/product';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 
 type ProductEditProps = {
@@ -29,7 +29,7 @@ const ProductEdit = (props: ProductEditProps) => {
     }, []);
     const onSubmit: SubmitHandler<FormInputs> = data => {
         //console.log(data);
-        props.onUpdate(data)
+        props.onUpdate(data);
         navigate("/admin/product");
     }
     return (

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 import Sidebar from '../../components/Sidebar'
+import { Link } from 'react-router-dom'
 
 type Props = {}
 
@@ -27,6 +28,11 @@ const AdminLayout = (props: Props) => {
                             <h1 className="h2">Dashboard</h1>
 
                         </div>
+                        <div className="">
+                            <Link to={`/admin/product/add`} className="btn btn-primary">Thêm mới</Link>
+
+                        </div>
+                        <br />
                         <Outlet />
                     </main>
                 </div>

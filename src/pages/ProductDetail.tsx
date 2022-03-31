@@ -3,18 +3,18 @@ import { useParams } from 'react-router-dom'
 import { read } from '../api/product';
 import { ProductType } from '../type/Product';
 
-type Props = {}
 
-const ProductDetail = (props: Props) => {
+
+const ProductDetail = () => {
     const { id } = useParams();
     const [product, setProduct] = useState<ProductType>();
     useEffect(() => {
         const getProduct = async () => {
             const { data } = await read(id);
-            setProduct(data);
-        };
+            setProduct(data)
+        }
         getProduct();
-    })
+    }, [id])
     return (
         <div className="row">
             <div className="col-6">
