@@ -2,14 +2,27 @@ import Nav from '../../src/components/Nav';
 import Search from '../../src/components/Search';
 
 import React from 'react'
+import Banner from './Banner';
 
 type Props = {}
 
 const Header = (props: Props) => {
     return (
         <header>
-            <div className="logo text-center w-3/6">
-                <img src="	http://u639672.webmienphi.vn/userfiles/img/639672/beautyfresh_logo_1.png" width="10%" alt="" className="" />
+            <div className="text-center " style={{ backgroundColor: '#C1E3CE' }}>
+                <p>HỆ THỐNG PHÂN PHỐI NẾN CHÍNH HÃNG AN TOÀN & UY TÍN NHẤT CẢ NƯỚC</p>
+
+            </div>
+            <div className="container my-8 w-3/6 flex">
+                <div className='row'>
+                    <div className="col-lg-6 col-md-12 mb-4">
+                        <img src="	http://u639672.webmienphi.vn/userfiles/img/639672/beautyfresh_logo_1.png" width="20%" alt="" className="" />
+                    </div>
+                    <div className="col-lg-6 col-md-12 mb-4">
+                        <Search />
+                    </div>
+
+                </div>
             </div>
             <nav className="navbar navbar-expand-lg navbar-light bg-light ">
                 <div className="container-fluid">
@@ -18,11 +31,13 @@ const Header = (props: Props) => {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <Nav />
-                        <Search />
+
+
                     </div>
+
                 </div>
             </nav>
-
+            <Banner />
         </header>
     )
 }

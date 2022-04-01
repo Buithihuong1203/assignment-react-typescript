@@ -24,6 +24,8 @@ const ProductDetail = () => {
             <div className="col-6">
                 <h3>Tên sản phẩm : {product?.name}</h3>
                 <p>Giá sản phẩm: {product?.price}</p>
+                <p>{product?.desc}</p>
+
                 <div className=" ">
                     <button className="btn btn-primary " type="button">Mua ngay</button>
                 </div>

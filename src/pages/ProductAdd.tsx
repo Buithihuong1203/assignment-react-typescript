@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 type Inputs = { // kiểu dữ liệu của từng input
     name: string,
-    price: number
+    price: number,
+    desc: string
 };
 
 type ProductAddProps = {
@@ -32,6 +33,11 @@ const ProductAdd = (props: ProductAddProps) => {
                     <label className="form-label">Price</label>
                     <input type="number" className="form-control"  {...register('price')} />
                 </div>
+                <div className="mb-3">
+                    <label className="form-label">Nội dung</label>
+                    <textarea className="form-control" rows={3} defaultValue={""} {...register('desc')} />
+                </div>
+
                 <button className="btn btn-primary">Thêm sản phẩm</button>
             </form>
         </div>

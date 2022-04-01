@@ -15,19 +15,7 @@ const Nav = (props: Props) => {
                 <a className="nav-link" href="#">WHAT'S NEW</a>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="#">MAKEUP</a>
-            </li>
-            <li className="nav-item">
-                <a className="nav-link" href="#">SKINCARE</a>
-            </li>
-            <li className="nav-item">
                 <a className="nav-link" href="#">FRAGRANCE</a>
-            </li>
-            <li className="nav-item">
-                <a className="nav-link" href="#">BODY</a>
-            </li>
-            <li className="nav-item">
-                <a className="nav-link" href="#">HAIR</a>
             </li>
             <li className="nav-item">
                 <a className="nav-link disabled">CONTACT</a>
