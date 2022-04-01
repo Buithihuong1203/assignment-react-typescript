@@ -10,12 +10,13 @@ type ProductAddProps = {
     onAdd: (product: Inputs) => void
 }
 const ProductAdd = (props: ProductAddProps) => {
-    const { register, handleSubmit, formState: { errors } } = useForm<Inputs>()
+    const { register, handleSubmit, formState: { errors }, reset } = useForm<Inputs>()
     //sử dụng hook useNavigate để chuyển sang
     const navigate = useNavigate();
     const onSubmit: SubmitHandler<Inputs> = (dataInput) => {
         // console.log(dataInput);  
         props.onAdd(dataInput);
+        reset(dataInput);
         //chuyển trang 
         navigate("/admin/product");
 

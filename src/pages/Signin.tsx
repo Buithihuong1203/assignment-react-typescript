@@ -16,6 +16,7 @@ const Signin = () => {
 
     const onSumbit: SubmitHandler<FormInputs> = async (user) => {
         const { data } = await signin(user);
+        console.log(data)
         if (data) {
             toast.success("Bạn đã đăng nhập thành công, chờ 3s");
             setTimeout(() => {

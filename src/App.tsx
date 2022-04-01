@@ -11,7 +11,7 @@ import Homepage from '../src/pages/HomePage';
 import Adminlayout from './pages/layouts/AdminLayout';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import ProductAdd from './pages/ProductAdd';
 import ProductManager from './pages/ProductManager';
 import ProductEdit from './pages/ProductEdit';
@@ -49,6 +49,7 @@ function App() {
   const onHandleUpdate = async (product: ProductType) => {
     try {
       const { data } = await update(product);
+      //console.log(data)
       setProducts(products.map(item => item._id === data.id ? product : item))
       if (data) {
         toast.success("Sửa thành công");
@@ -66,8 +67,9 @@ function App() {
             <Route index element={<Products products={products} />} />
             <Route path=":id" element={<ProductDetail />} />
           </Route>
-
         </Route>
+        <Route path='/signin' element={<Signin />} />
+        <Route path='/signup' element={<Signup />} />
 
         <Route>
           <Route path='/admin' element={<Adminlayout />} >
@@ -79,10 +81,8 @@ function App() {
             </Route>
           </Route>
         </Route>
-        <Route path='/signin' element={<Signin />} />
-        <Route path='/signup' element={<Signup />} />
-
       </Routes>
+      <ToastContainer />
 
     </div>
   )
