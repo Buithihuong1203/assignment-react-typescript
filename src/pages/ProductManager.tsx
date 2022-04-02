@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 type ProductManagerProps = {
     products: ProductType[];
     onRemove: (id: number) => void
+    onUpdate: (id: number) => void
 }
 
 const ProductManager = (props: ProductManagerProps) => {
@@ -17,7 +18,8 @@ const ProductManager = (props: ProductManagerProps) => {
                         <th>STT</th>
                         <th>Tên sản phẩm</th>
                         <th>Giá</th>
-                        <th>Thao tác</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,9 +30,9 @@ const ProductManager = (props: ProductManagerProps) => {
                             <td>{item.price}</td>
                             <td>
                                 <Link to={`/admin/product/${item._id}/edit`}>Editor</Link>
-                                <br />
-                                <br />
-                                <button onClick={() => props.onRemove(item._id)}>Remove</button>
+                            </td>
+                            <td>
+                                <button onClick={() => props.onRemove(item._id)} className="btn btn-danger">Remove</button>
                             </td>
 
                         </tr>

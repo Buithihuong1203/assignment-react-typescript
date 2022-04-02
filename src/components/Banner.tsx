@@ -12,7 +12,7 @@ const Banner = (props: Props) => {
             </ol>
             <div className="carousel-inner">
                 <div className="carousel-item active">
-                    <img className="d-block w-100" src="https://picsum.photos/1920/500?auto=yes&bg=666&fg=444&text=First slide" alt="First slide" />
+                    <img className="d-block w-100" src="http://u639672.webmienphi.vn/userfiles/img/639672/valmont_web_banner.jpg" alt="First slide" />
                 </div>
                 <div className="carousel-item">
                     <img className="d-block w-100" src="https://picsum.photos/1920/500?auto=yes&bg=666&fg=444&text=Second slide" alt="Second slide" />
