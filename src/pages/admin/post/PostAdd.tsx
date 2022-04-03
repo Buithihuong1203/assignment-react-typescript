@@ -20,7 +20,21 @@ const PostAdd = (props: PostAddProps) => {
         navigate("/admin/post");
     }
     return (
-        <div>PostAdd</div>
+        <div>
+            <form onSubmit={handleSubmit(onSubmit)} className="container my-8">
+                <div className="mb-3 ">
+                    <label className="form-label">Title</label>
+                    <input type="text" className="form-control" {...register('title')} />
+                </div>
+                <div className="mb-3">
+                    <label className="form-label">Desc</label>
+                    <input type="text" className="form-control"  {...register('desc')} />
+                </div>
+
+
+                <button className="btn btn-primary">Thêm bài viết</button>
+            </form>
+        </div>
     )
 }
 
