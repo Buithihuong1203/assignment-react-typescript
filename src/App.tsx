@@ -39,6 +39,7 @@ function App() {
       const { data } = await list();
       setPosts(data);
     };
+    getPosts();
   }, []);
   const onHandleAddProduct = async (product: ProductType) => {
     try {
@@ -68,7 +69,7 @@ function App() {
     } catch (error) {
 
     }
-  }
+  };
   const onHandleAddPost = async (post: PostType) => {
     try {
       const { data } = await add(post);

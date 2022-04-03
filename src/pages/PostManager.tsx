@@ -23,7 +23,7 @@ const PostManager = (props: PostManagerProps) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {props.post.map((item, index) => {
+                    {props.posts.map((item, index) => {
                         return <tr key={index}>
                             <td>{index + 1}</td>
                             <td>{item.title}</td>
@@ -32,7 +32,7 @@ const PostManager = (props: PostManagerProps) => {
                                 <Link to={`/admin/post/${item._id}/edit`}>Sửa</Link>
                             </td>
                             <td>
-                                <button onClick={() => props.onRemove(item._id)} className="btn btn-danger">Xóa</button>
+                                <button onClick={() => props.onRemovePost(item._id)} className="btn btn-danger">Xóa</button>
                             </td>
 
                         </tr>

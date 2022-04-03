@@ -1,10 +1,51 @@
-import React from 'react'
+import { useForm, SubmitHandler } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
+import { PostType } from '../../../type/Post';
+import { read, update } from '../../../api/post';
+import React, { useEffect, useState } from 'react';
 
-type Props = {}
 
-const PostEdit = (props: Props) => {
+type PostEditProps = {
+    onUpdate: (product: PostType) => void
+}
+
+type FormInputs = {
+    title: string,
+    desc: string
+}
+
+const PostEdit = (props: PostEditProps) => {
+    const { register, handleSubmit, formState: { errors }, reset } = useForm<FormInputs>();
+    const { id } = useParams();
+    const navigate = useNavigate();
+
+
+    useEffect(() => {
+        const getPost = async () => {
+            const { data } = await read(id);
+            reset(data)
+        }
+        getPost();
+    }, []);
+    const onSubmit: SubmitHandler<FormInputs> = data => {
+        //console.log(data);
+        props.onUpdate(data);
+        navigate("/admin/post");
+    }
     return (
-        <div>PostEdit</div>
+        <div>
+            <form onSubmit={handleSubmit(onSubmit)} className="container my-8">
+                <div className="mb-3 ">
+                    <label className="form-label">Title</label>
+                    <input type="text" className="form-control" {...register('title')} />
+                </div>
+                <div className="mb-3">
+                    <label className="form-label">Desc</label>
+                    <input type="text" className="form-control"  {...register('desc')} />
+                </div>
+                <button className="btn btn-primary">Update</button>
+            </form>
+        </div>
     )
 }
 

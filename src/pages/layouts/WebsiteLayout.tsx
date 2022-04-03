@@ -4,6 +4,7 @@ import Footer from '../../components/Footer';
 import { Outlet } from 'react-router-dom';
 import FilterBy from '../../components/FilterBy';
 import Paginnation from '../../components/Paginnation';
+import Categories from '../Categories';
 
 
 
@@ -22,6 +23,7 @@ const WebsiteLayout = (props: Props) => {
                     </aside>
                 </div>
                 <div className='col-10'>
+                    <Categories />
                     <main><Outlet /></main>
 
                 </div>

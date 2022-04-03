@@ -4,31 +4,35 @@ type Props = {}
 
 const Banner = (props: Props) => {
     return (
-        <div id="carouselExampleIndicators" className="carousel slide  my-5" data-ride="carousel">
-            <ol className="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to={0} className="active" />
-                <li data-target="#carouselExampleIndicators" data-slide-to={1} />
-                <li data-target="#carouselExampleIndicators" data-slide-to={2} />
-            </ol>
-            <div className="carousel-inner">
-                <div className="carousel-item active">
-                    <img className="d-block w-100" src="http://u639672.webmienphi.vn/userfiles/img/639672/valmont_web_banner.jpg" alt="First slide" />
+
+        <div>
+            <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">
+                <div className="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to={0} className="active" aria-current="true" aria-label="Slide 1" />
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to={1} aria-label="Slide 2" />
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to={2} aria-label="Slide 3" />
                 </div>
-                <div className="carousel-item">
-                    <img className="d-block w-100" src="https://picsum.photos/1920/500?auto=yes&bg=666&fg=444&text=Second slide" alt="Second slide" />
+                <div className="carousel-inner">
+                    <div className="carousel-item active">
+                        <img src="http://u639672.webmienphi.vn/userfiles/img/639672/valmont_web_banner.jpg" className="d-block w-100" alt="..." />
+                    </div>
+                    <div className="carousel-item">
+                        <img src="	http://u639672.webmienphi.vn/userfiles/img/639672/estee-lauder-new-in.jpg" className="d-block w-100" alt="..." />
+                    </div>
+                    <div className="carousel-item">
+                        <img src="	http://u639672.webmienphi.vn/userfiles/img/639672/copy_of_atome_-_web_banner_version_2.png" className="d-block w-100" alt="..." />
+                    </div>
                 </div>
-                <div className="carousel-item">
-                    <img className="d-block w-100" src="https://picsum.photos/1920/500?auto=yes&bg=555&fg=333&text=Third slide" alt="Third slide" />
-                </div>
+                <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <span className="carousel-control-prev-icon" aria-hidden="true" />
+                    <span className="visually-hidden">Previous</span>
+                </button>
+                <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <span className="carousel-control-next-icon" aria-hidden="true" />
+                    <span className="visually-hidden">Next</span>
+                </button>
             </div>
-            <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span className="carousel-control-prev-icon" aria-hidden="true" />
 
-            </a>
-            <a className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span className="carousel-control-next-icon" aria-hidden="true" />
-
-            </a>
         </div>
 
 
