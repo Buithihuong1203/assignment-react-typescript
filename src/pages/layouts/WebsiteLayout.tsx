@@ -5,6 +5,8 @@ import { Outlet } from 'react-router-dom';
 import FilterBy from '../../components/FilterBy';
 import Paginnation from '../../components/Paginnation';
 import Categories from '../Categories';
+import PostList from '../../components/PostList';
+import Posts from '../Posts';
 
 
 
@@ -19,12 +21,14 @@ const WebsiteLayout = (props: Props) => {
             <div className='row'>
                 <div className='col-2'>
                     <aside>
-                        <FilterBy />
                     </aside>
                 </div>
                 <div className='col-10'>
-                    <Categories />
-                    <main><Outlet /></main>
+
+                    <main><Outlet />
+
+
+                    </main>
 
                 </div>
 

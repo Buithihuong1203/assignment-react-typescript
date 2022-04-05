@@ -4,7 +4,8 @@ type Props = {}
 
 const CategoryAdd = (props: Props) => {
     return (
-        <div>CategoryAdd</div>
+        <div>
+        </div>
     )
 }
 

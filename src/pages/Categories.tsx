@@ -2,11 +2,11 @@ import React from 'react'
 import CategoryList from '../components/CategoryList'
 import { CategoryType } from '../type/Category'
 
-type CategoryProps = {
+type CategoriesProps = {
     categories: CategoryType[]
 }
 
-const Categories = (props: CategoryProps) => {
+const Categories = (props: CategoriesProps) => {
     return (
         <div>
             <CategoryList categories={props.categories} />

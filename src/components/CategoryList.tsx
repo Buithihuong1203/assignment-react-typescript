@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
+
 import { CategoryType } from "../type/Category";
 
 type CategoryListProps = {
@@ -9,6 +10,14 @@ type CategoryListProps = {
 
 
 const CategoryList = ({ categories }: CategoryListProps) => {
+
+    //const [categories, setCategories] = useState<CategoryType[]>();
+    //useEffect(() => {
+    //    const getCategory = async () => {
+    //        const { data } = await
+    //            setCategories(data);
+    //    };
+    //}, []);
     return (
         <div className="my-3 container my-5">
             <h2 className='my-3 text-center'>BRANDS</h2>
@@ -33,6 +42,5 @@ const CategoryList = ({ categories }: CategoryListProps) => {
         </div>
     )
 }
-
 export default CategoryList
 

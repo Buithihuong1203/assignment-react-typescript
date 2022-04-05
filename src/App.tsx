@@ -19,11 +19,16 @@ import PostManager from './pages/PostManager';
 import PostEdit from './pages/admin/post/PostEdit';
 import PostAdd from './pages/admin/post/PostAdd';
 import { PostType } from './type/Post';
+import Categories from './pages/Categories';
+import { CategoryType } from './type/Category';
+import Posts from './pages/Posts';
+import PostDetail from './pages/PostDetail';
 
 
 function App() {
   const [products, setProducts] = useState<ProductType[]>([]);
   const [posts, setPosts] = useState<PostType[]>([]);
+  const [categories, setCategories] = useState<CategoryType[]>([]);
 
   useEffect(() => {
     const getProducts = async () => {
@@ -41,6 +46,13 @@ function App() {
     };
     getPosts();
   }, []);
+  useEffect(() => {
+    const getCategories = async () => {
+      const { data } = await list();
+      setCategories(data);
+    }
+    getCategories(data);
+  });
   const onHandleAddProduct = async (product: ProductType) => {
     try {
       const { data } = await add(product);
@@ -70,59 +82,63 @@ function App() {
 
     }
   };
-  const onHandleAddPost = async (post: PostType) => {
-    try {
-      const { data } = await add(post);
-      if (data) {
-        toast.success("Thêm thành công");
-      }
-    } catch (error) {
+  //const onHandleAddPost = async (post: PostType) => {
+  //  try {
+  //    const { data } = await add(post);
+  //    if (data) {
+  //      toast.success("Thêm thành công");
+  //    }
+  //  } catch (error) {
 
-    }
+  //  }
 
-  }
-  const onHandleRemovePost = async (id: number) => {
-    remove(id);
-    setPosts(posts.filter(item => item._id !== id));
+  //}
+  //const onHandleRemovePost = async (id: number) => {
+  //  remove(id);
+  //  setPosts(posts.filter(item => item._id !== id));
 
-  }
-  const onHandleUpdatePost = async (post: PostType) => {
-    try {
-      const { data } = await update(post);
-      //console.log(data)
-      setPosts(posts.map(item => item._id === data.id ? post : item))
-      if (data) {
-        toast.success("Sửa thành công");
-      }
-    } catch (error) {
+  //}
 
-    }
-  }
+  //const onHandleUpdatePost = async (post: PostType) => {
+  //  try {
+  //    const { data } = await update(post);
+  //console.log(data)
+  //    setPosts(posts.map(item => item._id === data.id ? post : item))
+  //    if (data) {
+  //      toast.success("Sửa thành công");
+  //    }
+  //  } catch (error) {
+
+  //  }
+  //}
   return (
     <div className="App">
       <Routes>
         <Route path='/' element={<WebsiteLayout />} >
           <Route index element={<Homepage products={products} />} />
+          <Route index element={<Homepage posts={posts} />} />
           <Route path="product"  >
             <Route index element={<Products products={products} />} />
             <Route path=":id" element={<ProductDetail />} />
+          </Route>
+
+          <Route path="post">
+            <Route index element={<Posts posts={posts} />} />
+            <Route path=":id" element={<PostDetail />} />
           </Route>
         </Route>
         <Route path='/signin' element={<Signin />} />
         <Route path='/signup' element={<Signup />} />
 
+
         <Route>
+
           <Route path='/admin' element={<Adminlayout />} >
             <Route path="product">
               <Route index element={<ProductManager products={products} onRemove={onHandleRemoveProduct} />} />
               <Route path="add" element={<ProductAdd onAdd={onHandleAddProduct} />} />
               <Route path=":id/edit" element={<ProductEdit onUpdate={onHandleUpdateProduct} />} />
 
-            </Route>
-            <Route path="post">
-              <Route index element={<PostManager posts={posts} onRemovePost={onHandleRemovePost} />} />
-              <Route path='add' element={<PostAdd onAddPost={onHandleAddPost} />} />
-              <Route path=':id/edit' element={<PostEdit onUpdatePost={onHandleUpdatePost} />} />
             </Route>
           </Route>
 

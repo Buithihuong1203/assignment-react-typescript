@@ -32,8 +32,6 @@ const ProductAdd = (props: ProductAddProps) => {
                     <label className="form-label">Price</label>
                     <input type="number" className="form-control"  {...register('price')} />
                 </div>
-
-
                 <button className="btn btn-primary">Thêm sản phẩm</button>
             </form>
         </div>

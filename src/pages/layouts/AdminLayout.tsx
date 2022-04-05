@@ -2,6 +2,7 @@ import React from 'react'
 import { Outlet } from 'react-router-dom'
 import Sidebar from '../../components/Sidebar'
 import { Link } from 'react-router-dom'
+import PostManager from '../PostManager'
 
 type Props = {}
 

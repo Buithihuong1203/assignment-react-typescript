@@ -1,5 +1,5 @@
 export type PostType = {
-    _id?: number | string,
+    _id?: string,
     title: string,
     desc: string,
 }

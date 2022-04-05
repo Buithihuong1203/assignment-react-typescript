@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 
 
 type PostEditProps = {
-    onUpdate: (product: PostType) => void
+    onUpdate: (post: PostType) => void
 }
 
 type FormInputs = {

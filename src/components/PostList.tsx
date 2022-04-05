@@ -1,24 +1,38 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
+import { PostType } from '../type/Post'
 
-type Props = {}
+type PostListProps = {
+    posts: PostType[];
+}
 
-const PostList = (props: Props) => {
+const PostList = ({ posts }: PostListProps) => {
     return (
-        <div> <div className="card mb-3" style={{ maxWidth: 540 }} key={index}>
+
+        <div className="card mb-3" style={{ maxWidth: 540 }}>
+            <h2>FRAGRANCE</h2>
+            <br />
             <div className="row g-0">
-                <div className="col-md-4">
-                    <img src="https://www.thegioinuochoa.com.vn/uploads/news/2022/03/thumb/1647337976.1749.jpg" className="img-fluid rounded-start" alt="..." />
-                </div>
-                <div className="col-md-8">
-                    <div className="card-body">
-                        <h5 className="card-title">{category.name}</h5>
-                        <p className="card-text">{category.}</p>
-                        <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
+                {posts?.map((post, index) => {
+                    return (
+                        <div key={index}>
+                            <div className="col-md-4">
+                                <img src="..." className="img-fluid rounded-start" alt="..." />
+                            </div>
+                            <div className="col-md-8">
+                                <div className="card-body">
+                                    <h5 className="card-title">{post.title}</h5>
+                                    <p className="card-text">{post.desc}</p>
+                                    <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                    <Link to={`/post/${post._id}`} className="btn btn-outline-danger " >Xem thêm</Link>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                })}
             </div>
         </div>
-        </div>
+
     )
 }
 

@@ -12,10 +12,10 @@ const Nav = (props: Props) => {
                 <a className="nav-link" href="#">BRANDS</a>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="#">WHAT'S NEW</a>
+                <a className="nav-link" href="/product">WHAT'S NEW</a>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="#">FRAGRANCE</a>
+                <a className="nav-link" href="/post">FRAGRANCE</a>
             </li>
             <li className="nav-item">
                 <a className="nav-link disabled">CONTACT</a>
