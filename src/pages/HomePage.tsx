@@ -11,14 +11,12 @@ import Categories from './Categories';
 type HomePageProps = {
     products: ProductType[];
     //categories: CategoryType[];
-    posts: PostType[];
 }
 
 const Homepage = (props: HomePageProps) => {
     return (
         <div>
             <ProductList products={props.products} />
-            <PostList posts={props.posts} />
         </div>
     )
 }

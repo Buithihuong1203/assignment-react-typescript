@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { read } from '../api/product';
+import { readProduct } from '../api/product';
 import { ProductType } from '../type/Product';
 
 
@@ -10,7 +10,7 @@ const ProductDetail = () => {
     const [product, setProduct] = useState<ProductType>();
     useEffect(() => {
         const getProduct = async () => {
-            const { data } = await read(id);
+            const { data } = await readProduct(id);
             setProduct(data)
         }
         getProduct();

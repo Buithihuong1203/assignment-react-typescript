@@ -1,12 +1,12 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { PostType } from '../../../type/Post';
-import { read, update } from '../../../api/post';
+import { readPost, updatePost } from '../../../api/post';
 import React, { useEffect, useState } from 'react';
 
 
 type PostEditProps = {
-    onUpdate: (post: PostType) => void
+    onUpdatePost: (post: PostType) => void
 }
 
 type FormInputs = {
@@ -22,14 +22,14 @@ const PostEdit = (props: PostEditProps) => {
 
     useEffect(() => {
         const getPost = async () => {
-            const { data } = await read(id);
+            const { data } = await readPost(id);
             reset(data)
         }
         getPost();
     }, []);
     const onSubmit: SubmitHandler<FormInputs> = data => {
         //console.log(data);
-        props.onUpdate(data);
+        props.onUpdatePost(data);
         navigate("/admin/post");
     }
     return (

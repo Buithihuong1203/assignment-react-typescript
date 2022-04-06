@@ -1,35 +1,47 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { ProductType } from '../../../type/Product';
-import { read, update } from '../../../api/product';
+import { readProduct, updateProduct } from '../../../api/product';
 import React, { useEffect, useState } from 'react';
+import { CategoryType } from "../../../type/Category";
+import { listCate } from "../../../api/category";
+
 
 
 type ProductEditProps = {
-    onUpdate: (product: ProductType) => void
+    onUpdateProduct: (product: ProductType) => void
 }
 
 type FormInputs = {
     name: string,
-    price: number
+    price: number,
+    category: string,
+    description: string
 }
 
 const ProductEdit = (props: ProductEditProps) => {
+    const [cate, setCate] = useState<CategoryType[]>([]);
     const { register, handleSubmit, formState: { errors }, reset } = useForm<FormInputs>();
-    const { id } = useParams();
+    const { id }: any = useParams();
     const navigate = useNavigate();
 
 
     useEffect(() => {
         const getProduct = async () => {
-            const { data } = await read(id);
+            const { data } = await readProduct(id);
             reset(data)
         }
         getProduct();
     }, []);
-    const onSubmit: SubmitHandler<FormInputs> = data => {
+    useEffect(() => {
+        const getCategory = async () => {
+            const { data } = await listCate();
+            setCate(data)
+        }
+    })
+    const onSubmit: SubmitHandler<FormInputs> = (data: any) => {
         //console.log(data);
-        props.onUpdate(data);
+        props.onUpdateProduct(data);
         navigate("/admin/product");
     }
     return (
@@ -43,6 +55,21 @@ const ProductEdit = (props: ProductEditProps) => {
                     <label className="form-label">Price</label>
                     <input type="number" className="form-control"  {...register('price')} />
                 </div>
+                <div className="mb-3">
+                    <label className="form-label">Category</label>
+                    <select className="form-select" {...register("category")}>
+                        {cate.map((item, index) =>
+
+                            <option value={item._id} key={index}>{item.name}</option>
+                        )}
+                    </select>
+                    <input type="hidden" {...register("category")} className="form-control" />
+                </div>
+                <div className="mb-3">
+                    <label className="form-label">Description</label>
+                    <input type="text" {...register("description")} className="form-control" />
+                </div>
+
                 <button className="btn btn-primary">Update</button>
             </form>
         </div>

@@ -11,13 +11,6 @@ type CategoryListProps = {
 
 const CategoryList = ({ categories }: CategoryListProps) => {
 
-    //const [categories, setCategories] = useState<CategoryType[]>();
-    //useEffect(() => {
-    //    const getCategory = async () => {
-    //        const { data } = await
-    //            setCategories(data);
-    //    };
-    //}, []);
     return (
         <div className="my-3 container my-5">
             <h2 className='my-3 text-center'>BRANDS</h2>
