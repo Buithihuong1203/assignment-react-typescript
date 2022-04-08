@@ -2,18 +2,23 @@ import React from 'react'
 import { ProductType } from '../type/Product';
 import { Link } from 'react-router-dom'
 import { CategoryType } from '../type/Category';
+import { isAuthenticate } from '../utils/localStorage';
 
 
 type ProductManagerProps = {
     products: ProductType[];
     categories: CategoryType[];
-    onRemoveProduct: (id: number) => void
-    onUpdateproduct: (id: number) => void
+    onRemoveProduct: (id: number, token: any, user: any) => void
 }
 
 const ProductManager = (props: ProductManagerProps) => {
+    const { user, token } = isAuthenticate()
     return (
         <div>
+            <div className="">
+                <Link to={`/admin/product/add`} className="btn btn-primary">Thêm mới</Link>
+
+            </div>
             <table className="table table-bordered">
                 <thead>
                     <tr>
@@ -38,7 +43,7 @@ const ProductManager = (props: ProductManagerProps) => {
                                 <Link to={`/admin/product/${item._id}/edit`} className="btn btn-success">Editor</Link>
                             </td>
                             <td>
-                                <button onClick={() => props.onRemoveProduct(item._id)} className="btn btn-danger">Remove</button>
+                                <button onClick={() => props.onRemoveProduct(item._id, user, token)} className="btn btn-danger">Remove</button>
                             </td>
 
                         </tr>

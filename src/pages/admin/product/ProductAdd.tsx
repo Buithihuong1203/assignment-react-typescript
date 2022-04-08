@@ -3,6 +3,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { listCate } from "../../../api/category";
 import { CategoryType } from "../../../type/Category"
+import { isAuthenticate } from "../../../utils/localStorage";
 
 
 type Inputs = { // kiểu dữ liệu của từng input
@@ -13,31 +14,32 @@ type Inputs = { // kiểu dữ liệu của từng input
 };
 
 type ProductAddProps = {
-    onAddProduct: (product: Inputs) => void
+    onAddProduct: (product: Inputs, user: any, token: any) => void
 }
 const ProductAdd = (props: ProductAddProps) => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm<Inputs>()
     //sử dụng hook useNavigate để chuyển sang
     const navigate = useNavigate();
     const [cate, setCate] = useState<CategoryType[]>([]);
+    const { token, user } = isAuthenticate()
     useEffect(() => {
         const getCategory = async () => {
             const { data } = await listCate()
             setCate(data)
         }
-        getCategory()
-    }, [])
+        getCategory();
+    }, []);
     const onSubmit: SubmitHandler<Inputs> = (dataInput) => {
         // console.log(dataInput);  
-        props.onAddProduct(dataInput);
-        reset(dataInput);
+        props.onAddProduct(dataInput, token, user);
+        reset(dataInput, token);
         //chuyển trang 
         navigate("/admin/product");
 
     }
     return (
         <div>
-            <form onSubmit={handleSubmit(onSubmit)} className="container my-8">
+            <form onSubmit={handleSubmit(onSubmit)} className="container my-8" >
                 <div className="mb-3 ">
                     <label className="form-label">Name</label>
                     <input type="text" className="form-control" {...register('name')} />
@@ -47,7 +49,7 @@ const ProductAdd = (props: ProductAddProps) => {
                     <input type="number" className="form-control"  {...register('price')} />
                 </div>
                 <div className="mb-3">
-                    <label className="form-label">Category: </label>
+                    <label className="form-label">Category </label>
                     <select className="form-select" {...register('categoryId')} aria-label="Default select example">
                         {cate.map(item =>
                             <option value={item._id}>{item.name}</option>
@@ -56,7 +58,7 @@ const ProductAdd = (props: ProductAddProps) => {
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Description</label>
-                    <input type="text" {...register('description', { required: true })} className="form-control" required />
+                    <input type="text" {...register('description')} className="form-control" />
                 </div>
                 <button className="btn btn-primary">Thêm sản phẩm</button>
             </form>

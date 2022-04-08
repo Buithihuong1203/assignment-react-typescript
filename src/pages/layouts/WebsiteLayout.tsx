@@ -24,10 +24,8 @@ const WebsiteLayout = (props: Props) => {
                     </aside>
                 </div>
                 <div className='col-10'>
-
-                    <main><Outlet />
-
-
+                    <main>
+                        <Outlet />
                     </main>
 
                 </div>

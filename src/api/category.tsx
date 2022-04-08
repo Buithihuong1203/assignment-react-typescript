@@ -1,5 +1,7 @@
 import { CategoryType } from "../type/Category";
+import { isAuthenticate } from "../utils/localStorage";
 import instance from "./instance";
+const { token, user } = isAuthenticate();
 
 export const listCate = () => {
     const url = `/category`;
@@ -8,7 +10,7 @@ export const listCate = () => {
 }
 
 export const addCate = (category: CategoryType, user: any, token: any) => {
-    const url = `/categories/${user._id}`;
+    const url = `/category/${user._id}`;
     return instance.post(url, category, {
         headers: {
             "Authorization": `Bearer ${token}`
@@ -21,7 +23,7 @@ export const readCate = (id: number) => {
     return instance.get(url);
 }
 export const removeCate = (id: number, user: any, token: any) => {
-    const url = `/categories/${id}/${user._id}`;
+    const url = `/category/${id}/${user._id}`;
     return instance.delete(url, {
         headers: {
             "Authorization": `Bearer ${token}`
@@ -30,7 +32,7 @@ export const removeCate = (id: number, user: any, token: any) => {
 }
 
 export const updateCate = (category: CategoryType, user: any, token: any) => {
-    const url = `/categories/${category._id}/${user._id}`;
+    const url = `/category/${category._id}/${user._id}`;
     return instance.put(url, category, {
         headers: {
             "Authorization": `Bearer ${token}`

@@ -6,12 +6,15 @@ import { Link } from 'react-router-dom'
 type PostManagerProps = {
     posts: PostType[];
     onRemovePost: (id: number) => void
-    onUpdatePost: (id: number) => void
 }
 
 const PostManager = (props: PostManagerProps) => {
     return (
         <div>
+            <div className="">
+                <Link to={`/admin/post/add`} className="btn btn-primary">Thêm mới</Link>
+            </div>
+            <br />
             <table className="table table-bordered">
                 <thead>
                     <tr>
@@ -29,7 +32,7 @@ const PostManager = (props: PostManagerProps) => {
                             <td>{item.title}</td>
                             <td>{item.desc}</td>
                             <td>
-                                <Link to={`/admin/post/${item._id}/edit`}>Sửa</Link>
+                                <Link to={`/admin/post/${item._id}/edit`} className="btn btn-success">Sửa</Link>
                             </td>
                             <td>
                                 <button onClick={() => props.onRemovePost(item._id)} className="btn btn-danger">Xóa</button>

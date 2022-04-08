@@ -5,11 +5,12 @@ import { readProduct, updateProduct } from '../../../api/product';
 import React, { useEffect, useState } from 'react';
 import { CategoryType } from "../../../type/Category";
 import { listCate } from "../../../api/category";
+import { isAuthenticate } from "../../../utils/localStorage";
 
 
 
 type ProductEditProps = {
-    onUpdateProduct: (product: ProductType) => void
+    onUpdateProduct: (product: ProductType, user: any, token: any) => void
 }
 
 type FormInputs = {
@@ -23,6 +24,7 @@ const ProductEdit = (props: ProductEditProps) => {
     const [cate, setCate] = useState<CategoryType[]>([]);
     const { register, handleSubmit, formState: { errors }, reset } = useForm<FormInputs>();
     const { id }: any = useParams();
+    const { token, user } = isAuthenticate()
     const navigate = useNavigate();
 
 
@@ -41,7 +43,7 @@ const ProductEdit = (props: ProductEditProps) => {
     })
     const onSubmit: SubmitHandler<FormInputs> = (data: any) => {
         //console.log(data);
-        props.onUpdateProduct(data);
+        props.onUpdateProduct(data, user, token);
         navigate("/admin/product");
     }
     return (
