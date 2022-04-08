@@ -27,29 +27,32 @@ import { readCate, listCate, addCate, removeCate, updateCate } from './api/categ
 import { addPost, listPost, removePost, updatePost } from './api/post';
 import CategoryManager from './pages/CategoryManager';
 import CategoryAdd from './pages/admin/categories/CategoryAdd';
+import CategoryEdit from './pages/admin/categories/CategoryEdit';
+import PostList from './components/PostList';
 
 
 function App() {
   const [categories, setCategories] = useState<CategoryType[]>([]);
   const [products, setProducts] = useState<ProductType[]>([]);
   const [posts, setPosts] = useState<PostType[]>([]);
+
   useEffect(() => {
     const getCategory = async () => {
       const { data } = await listCate();
       //console.log(data)
       setCategories(data);
-    }
+    };
     getCategory();
-  })
+  }, []);
 
 
   useEffect(() => {
-    const getProducts = async () => {
+    const getProduct = async () => {
       const { data } = await listProduct();
       //console.log(data)
       setProducts(data);
     };
-    getProducts();
+    getProduct();
 
   }, []);
   useEffect(() => {
@@ -70,33 +73,35 @@ function App() {
     }
   }
   const onHandleRemoveCategory = async (id: number, user: any, token: any) => {
-    removeCate(id, user, token);
-    setCategories(categories.filter(item => item._id !== id))
+    const alert = window.confirm("Bạn có muốn xóa không?");
+    if (alert) {
+      await removeCate(id, user, token);
+      setCategories(categories.filter(item => item._id !== id))
+    }
+
 
   }
-  const onHandleUpdateCategory = async (categories: any, user: any, token: any) => {
-    try {
-      const { data } = await updateCate(categories, user, token);
-      setCategories(categories.map(item => item._id === data.id ? categories : item))
-    } catch (error) {
+  const onHandleUpdateCategory = async (categories: CategoryType, user: any, token: any) => {
 
-    }
+    const { data } = await updateCate(categories, user, token);
+    setCategories(categories.map(item => item._id === data.id ? data : item))
   }
   const onHandleAddProduct = async (product: any, user: any, token: any) => {
     try {
       const { data } = await addProduct(product, user, token);
       setProducts([...products, data])
-      if (data) {
-        toast.success("Thêm thành công");
-      }
     } catch (error) {
 
     }
 
   }
   const onHandleRemoveProduct = async (id: number, user: any, token: any) => {
-    removeProduct(id, user, token);
-    setProducts(products.filter(item => item._id !== id));
+    const alert = window.confirm("Bạn có muốn xóa không");
+    if (alert) {
+      await removeProduct(id, user, token);
+      setProducts(products.filter(item => item._id !== id));
+    }
+
 
   }
 
@@ -104,7 +109,7 @@ function App() {
     try {
       const { data } = await updateProduct(product, user, token);
       //console.log(data)
-      setProducts(products.map(item => item._id === data.id ? product : item))
+      setProducts(products.map(item => item._id === data.id ? data : item))
     } catch (error) {
 
     }
@@ -112,18 +117,17 @@ function App() {
   const onHandleAddPost = async (post: PostType) => {
     try {
       const { data } = await addPost(post);
-      if (data) {
-        toast.success("Thêm thành công");
-      }
     } catch (error) {
 
     }
 
   }
   const onHandleRemovePost = async (id: number) => {
-    removePost(id);
-    setPosts(posts.filter(item => item._id !== id));
-
+    const alert = window.confirm("Bạn có muốn xóa không");
+    if (alert) {
+      await removePost(id);
+      setPosts(posts.filter(item => item._id !== id));
+    }
   }
 
   const onHandleUpdatePost = async (post: PostType) => {
@@ -131,9 +135,6 @@ function App() {
       const { data } = await updatePost(post);
       console.log(data)
       setPosts(posts.map(item => item._id === data.id ? post : item))
-      if (data) {
-        toast.success("Sửa thành công");
-      }
     } catch (error) {
 
     }
@@ -156,8 +157,10 @@ function App() {
         <Route>
 
           <Route path='/admin' element={<Adminlayout />} >
-            <Route path='category'>
+            <Route path="category">
               <Route index element={<CategoryManager categories={categories} onRemoveCategory={onHandleRemoveCategory} />} />
+              <Route path="add" element={<CategoryAdd onAddCate={onHandleAddCategory} />} />
+              <Route path=":id/edit" element={<CategoryEdit onEditCate={onHandleUpdateCategory} />} />
 
 
             </Route>
